@@ -21,9 +21,7 @@ public class Main {
 
 			for (int j = 0; j < str.length(); j++) {
 
-				for (int k = 0; k < repeat; k++) {
-					sb.append(str.charAt(j));
-				}
+				sb.append(String.valueOf(str.charAt(j)).repeat(repeat));
 			}
 			sb.append('\n');
 		}
