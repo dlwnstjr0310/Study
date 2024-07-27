@@ -10,20 +10,20 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 
 		int num = Integer.parseInt(br.readLine());
-		PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
 
 		for (int i = 0; i < num; i++) {
 			int order = Integer.parseInt(br.readLine());
 
-			if (minHeap.isEmpty() && order == 0) {
-				sb.append(0).append('\n');
+			if (order == 0 && pq.isEmpty()) {
+				sb.append('0').append('\n');
 			} else if (order == 0) {
-				sb.append(minHeap.poll()).append('\n');
+				sb.append(pq.poll()).append('\n');
 			} else {
-				minHeap.offer(order);
+				pq.offer(order);
 			}
 		}
 
-		System.out.println(sb);
+		System.out.print(sb);
 	}
 }
