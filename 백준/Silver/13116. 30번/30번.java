@@ -8,23 +8,24 @@ public class Main {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
+
 		int num = Integer.parseInt(br.readLine());
 
 		for (int i = 0; i < num; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 
-			int A = Integer.parseInt(st.nextToken());
-			int B = Integer.parseInt(st.nextToken());
+			int first = Integer.parseInt(st.nextToken());
+			int second = Integer.parseInt(st.nextToken());
 
-			while (A != B) {
-				if (A > B) {
-					A /= 2;
+			while (first != second) {
+				if (first > second) {
+					first /= 2;
 				} else {
-					B /= 2;
+					second /= 2;
 				}
 			}
 
-			sb.append(A * 10).append('\n');
+			sb.append(first * 10).append('\n');
 		}
 
 		System.out.print(sb);
