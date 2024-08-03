@@ -16,8 +16,13 @@ public class Main {
 		 *          이후 n+1 줄까지 그림의 정보. 1은 색칠, 0은 색칠안한거
 		 *
 		 * 2. 기능 :
-		 * 2.1 : 상하좌우 검사해서 연결되어있으면 count + 1 해주기
-		 * 2.2 : 연결되어 있는 1의 갯수를 카운트해서 max 변수에 담기
+		 * 2-1 : 상하좌우 검사해서 연결되어있으면 count + 1 해주기
+		 * 2-2 : 연결되어 있는 1의 갯수를 카운트해서 max 변수에 담기
+		 * 2-2-1 : static int max 를 선언해서 dfs 에서 Math.max 로 입력해줬더니
+		 *          1 1 1
+		 *          1 0 0
+		 *          1 0 0 일때 우로 3, 아래로 3 이라서 max가 3으로 출력됨
+		 * 2-3 : dfs를 void 가 아닌 int 로 변경
 		 *
 		 * 3. 출력 : 총 그림의 갯수 \n 가장 큰 그림의 넓이
 		 * */
@@ -48,7 +53,7 @@ public class Main {
 			for (int j = 0; j < m; j++) {
 				if (!isChecked[i][j] && map[i][j] == 1) {
 					count++;
-					max = Math.max(dfs(i, j, 1), max);
+					max = Math.max(dfs(i, j, 1),max);
 				}
 			}
 		}
@@ -62,23 +67,21 @@ public class Main {
 
 	static int dfs(int row, int col, int count) {
 
+		int size = 1;
 		isChecked[row][col] = true;
-		int maxSize = 1;
 
 		for (int i = 0; i < 4; i++) {
 			int nr = row + dir[i][0];
 			int nc = col + dir[i][1];
 
 			if (valid(nr, nc)) {
-				maxSize += dfs(nr, nc, count + 1);
+				size += dfs(nr, nc, count + 1);
 			}
 		}
 
-		return maxSize;
+		return size;
 	}
-
 	static boolean valid(int nr, int nc) {
 		return nr < map.length && nc < map[0].length && nr >= 0 && nc >= 0 && !isChecked[nr][nc] && map[nr][nc] == 1;
 	}
-
 }
